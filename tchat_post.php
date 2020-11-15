@@ -11,7 +11,7 @@ catch(Exception $e)
 
 // Insertion du message à l'aide d'une requête préparée
 $req = $bdd->prepare('INSERT INTO tchat (nom, mess) VALUES(?, ?)');
-$req->execute(array($_POST['name'], $_POST['usermsg']));
+$req->execute(array($_POST['nom'], $_POST['usermsg']));
 
 // Redirection du visiteur vers la page du tchat
 header('Location: index.php');

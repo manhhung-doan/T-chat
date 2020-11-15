@@ -15,21 +15,21 @@
         session_start();
 
         if(isset($_POST['enter'])){
-            if($_POST['name'] != ""){
-                $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
+            if($_POST['nom'] != ""){
+                $_SESSION['nom'] = stripslashes(htmlspecialchars($_POST['nom']));
             }
             else{
-                echo '<span class="error">Please type in a name</span>';
+                echo '<span class="error">Veuillez saisir un nom!</span>';
             }
         }
 
-        if(!isset($_SESSION['name'])){
+        if(!isset($_SESSION['nom'])){
             echo'
             <div id="loginform">
             <form action="index.php" method="post">
-                <p>Please enter your name to continue:</p>
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name" />
+                <p>Veuillez saisir un nom pour continuer:</p>
+                <label for="nom">Nom:</label>
+                <input type="text" name="nom" id="nom" />
                 <input type="submit" name="enter" id="enter" value="Enter" />
             </form>
             </div>
@@ -40,7 +40,7 @@
 
     <div id="wrapper">
         <div id="menu">
-            <p class="welcome">Welcome, <b style="color:white; background-color:green; padding:2px; border-width:1px;border-radius:2px;"><?php echo $_SESSION['name']; ?></b></p>
+            <p class="welcome">Bienvenue, <b style="color:white; background-color:green; padding:2px; border-width:1px;border-radius:2px;"><?php echo $_SESSION['nom']; ?></b></p>
             <p class="logout"><a id="exit" href="#">Exit</a></p>
             <div style="clear:both"></div>
 
@@ -77,9 +77,9 @@
         </div>
      
         <form action="tchat_post.php" method="post">
-            <input type="hidden" name="name" value="<?php echo $_SESSION['name']; ?>" />
+            <input type="hidden" name="nom" value="<?php echo $_SESSION['nom']; ?>" />
             <input name="usermsg" type="text" id="usermsg" />
-            <input name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+            <input name="submitmsg" type="submit"  id="submitmsg" value="Envoyer" />
         </form>
         
     </div>
@@ -90,21 +90,15 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
     <script type="text/javascript">
-        // jQuery Document
+        
         $(document).ready(function(){
-	        //If user wants to end session
 	        $("#exit").click(function(){
-		        var exit = confirm("Are you sure you want to end the session?");
+		        var exit = confirm("Voulez-vous vraiment mettre fin à la session?");
 		        if(exit==true){window.location = 'index.php?logout=true';}		
 	        });
 
-            // setTimeout(function(){
-            //     window.location.reload(1);
-            // }, 1000);
-
             setInterval(function(){
                 $('#chatbox').load('index.php #chattext');}, 2000)
-            /* time in milliseconds (ie 2 seconds)*/
         });
 
     </script>
